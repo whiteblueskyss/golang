@@ -1,3 +1,7 @@
+// global scope, local, package
+// block scope, function scope, shadowing
+
+
 package main
 
 import "fmt"
