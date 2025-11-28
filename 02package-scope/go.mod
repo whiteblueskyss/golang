@@ -1,3 +1,3 @@
-module example.com
+module mymath
 
 go 1.25.4
