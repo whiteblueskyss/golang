@@ -1,0 +1,24 @@
+Command: 
+*   go help
+* 
+
+
+Why golang over the other languages ? 
+=> 
+
+
+Memory management
+=> automatically managed by go. keyword to allocate memory 
+new() -> alocate memory but not init
+make() -> alocate memory and init
+
+GC automatically do memory cleanup for nil and out of scope.    
+
+* Same code but can be build for different machine. for details command: go env
+
+About the language-
+1. formal grammer uses semicolon as terminator.
+2. varialbe name _  if we don't need it.
+
+Go functions do not always return an error as their second parameter.
+While it is a common and idiomatic practice in Go to return an error as the last return value of a function, especially when the function can encounter a failure, it is not a strict requirement for all functions.

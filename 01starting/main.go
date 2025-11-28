@@ -7,13 +7,16 @@ func main() {
 	fmt.Println()
 
 	// Call basics demo
-	basicsDemo()
-	fmt.Println()
+	// basicsDemo()
+	// fmt.Println()
 
 	// Call scope demo
-	scopeDemo()
-	fmt.Println()
+	// scopeDemo()
+	// fmt.Println()
 
 	// Call shadowing demo
-	shadowingDemo()
+	// shadowingDemo()
+
+	// input()
+
 }
