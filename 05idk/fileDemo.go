@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
-	"io"
-	"os"
+	"fmt" // "fmt" package is used for formatted I/O operations
+	"io"  // "io" package is used for input and output operations like reading and writing files.
+	"os"  // "os" package provides a platform-independent interface to operating system functionality, including file handling.
 )
 
 func fileDemo() {
