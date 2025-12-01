@@ -5,6 +5,10 @@ import (
 	"sort"
 )
 
+// slice -> dynamic
+// most used construct in go
+// + useful methods
+
 func slice() {
 	fmt.Println("Welcome to video on slices")
 
@@ -43,3 +47,29 @@ func slice() {
 	fmt.Println(courses)
 
 }
+
+// uninitialized slice is nil
+
+// var nums = make([]int, 0, 5)
+// capacity -> maximum numbers of elements can fit
+// fmt.Println(cap(nums))
+// fmt.Println(nums == nil)
+
+// nums = append(nums, 1)
+// nums = append(nums, 2)
+
+// slice operator
+
+// var nums = []int{1, 2, 3, 4, 5}
+// fmt.Println(nums[0:1])
+// fmt.Println(nums[:2])
+// fmt.Println(nums[1:])
+
+// slices
+// var nums1 = []int{1, 2, 3}
+// var nums2 = []int{1, 2, 4}
+
+// fmt.Println(slices.Equal(nums1, nums2))
+
+// var nums = [][]int{{1, 2, 3}, {4, 5, 6}}
+// fmt.Println(nums)

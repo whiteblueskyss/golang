@@ -12,5 +12,7 @@ func main() {
 
 	// loops()
 
-	method()
+	// method()
+
+	// functiomDemo()
 }
