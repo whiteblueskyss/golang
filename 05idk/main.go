@@ -6,4 +6,12 @@ func main() {
 
 	// fileDemo()
 
+	// variadicDemo()
+
+	// closuresDemo()
+
+	// moreStructs()
+
+	// interfaceDemo()
+
 }

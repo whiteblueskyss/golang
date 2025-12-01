@@ -9,6 +9,7 @@ func deferDemo() {
 	fmt.Println("Hello")
 	myDefer()
 
+	// defer statements are executed in LIFO (Last In First Out) order. Like a stack.
 }
 
 // world, One, Two
