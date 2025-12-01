@@ -19,4 +19,8 @@ func main() {
 
 	// input()
 
+	// loop()
+
+	// switchDemo()
+
 }

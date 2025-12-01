@@ -1,11 +1,11 @@
 package main
 
 import (
-	"bufio"
+	"bufio" // used for buffered input and output
 	"fmt"
-	"os"
-	"strconv"
-	"strings"
+	"os"      // used for operating system functionality like reading from stdin, writing to stdout, and working with files.
+	"strconv" // used for string conversions. methods like Atoi, ParseFloat, itoa and more.
+	"strings" // used for string manipulation like trimming, splitting, replacing, and more.
 )
 
 func input() {
