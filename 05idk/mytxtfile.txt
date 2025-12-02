@@ -1,1 +1,0 @@
-This words needs to go in a txt file which will automatically created by golang code.

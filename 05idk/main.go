@@ -2,8 +2,6 @@ package main
 
 func main() {
 
-	// deferDemo()
-
 	// fileDemo()
 
 	// variadicDemo()
@@ -14,4 +12,5 @@ func main() {
 
 	// interfaceDemo()
 
+	// enumDemo()
 }

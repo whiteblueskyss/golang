@@ -53,7 +53,7 @@ func (p paypal) refund(amount float32, account string) {
 
 }
 
-func interfaceDemo() {
+func interfaceDemo2() {
 	// stripePaymentGw := stripe{}
 	// razorpayPaymentGw := razorpay{}
 
