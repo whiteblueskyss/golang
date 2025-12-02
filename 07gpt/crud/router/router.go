@@ -7,7 +7,8 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-func NewRouter() *chi.Mux {
+func NewRouter() *chi.Mux { //chi.Mux is the main router type in chi package. It implements the http.Handler interface and is used to define routes and middleware for handling HTTP requests.
+	// create a new chi router instance
 	r := chi.NewRouter()
 
 	// create an in-memory store and handler instance
@@ -15,7 +16,7 @@ func NewRouter() *chi.Mux {
 	h := handlers.NewStudentHandler(store)
 
 	// API routes
-	r.Route("/api", func(r chi.Router) {
+	r.Route("/api", func(r chi.Router) { // chi.Router is an interface that defines the methods for routing HTTP requests in the chi package.
 		r.Get("/students", h.List)
 		r.Get("/students/{id}", h.GetByID)
 		r.Post("/students", h.Create)

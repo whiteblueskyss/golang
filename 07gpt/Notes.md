@@ -84,3 +84,11 @@ easy to learn
 
 A mux is simply:
 A component that matches the incoming request path and chooses the correct handler.
+
+Chi supports:
+
+r.Get()
+r.Post()
+r.Put()
+r.Delete()
+r.Patch()

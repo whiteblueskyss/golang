@@ -12,3 +12,5 @@ func main() {
 	fmt.Println("Server running on :8080")
 	http.ListenAndServe(":8080", r)
 }
+
+// Follow: “Router → Handler → Repository → Response”.

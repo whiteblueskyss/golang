@@ -22,3 +22,7 @@ About the language-
 
 Go functions do not always return an error as their second parameter.
 While it is a common and idiomatic practice in Go to return an error as the last return value of a function, especially when the function can encounter a failure, it is not a strict requirement for all functions.
+
+
+
+Learn about different type of build in packages. 

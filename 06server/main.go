@@ -5,4 +5,6 @@ func main() {
 	// httprequest()
 
 	urlDemo()
+
+	webRequest()
 }
