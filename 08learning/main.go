@@ -15,6 +15,8 @@ func main() {
 
 	// mutexDemo()
 
+	// filesDemo()
+
 	p := &Person{Name: "Selim"}
 
 	SayHello(p)
