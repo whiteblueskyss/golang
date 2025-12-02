@@ -15,18 +15,17 @@ func printSlice[T comparable, V string](items []T, name V) { // T any,  T interf
 // 	}
 // }
 
-//
 // LIFO
-// type stack[T any] struct {
-// 	elements []T
-// }
+type stack[T any] struct {
+	elements []T
+}
 
 func generic() {
-	// myStack := stack[string]{
-	// 	elements: []string{"golang"},
-	// }
+	myStack := stack[string]{
+		elements: []string{"golang"},
+	}
 
-	// fmt.Println(myStack)
+	fmt.Println(myStack)
 
 	// nums := []int{1, 2, 3}
 	// names := []string{"golang", "typescript"}

@@ -5,6 +5,16 @@ import "fmt"
 func main() {
 	// interfaceDemo()
 
+	// deferDemo()
+
+	// channelDemo()
+
+	// goroutineDemo()
+
+	// generic()
+
+	// mutexDemo()
+
 	p := &Person{Name: "Selim"}
 
 	SayHello(p)
