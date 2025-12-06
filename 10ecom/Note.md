@@ -88,6 +88,7 @@ app := &application{config: cfg}  // Pointer to app itself
 ## Execution Order
 
 Middleware executes in **chain order** (top to bottom):
+
 ```
 Request → RequestID → RealIP → Logger → Recoverer → Timeout → Handler → Response
 ```
@@ -99,12 +100,14 @@ Request → RequestID → RealIP → Logger → Recoverer → Timeout → Handle
 **Purpose**: Generates unique ID for each request
 
 **How it works**:
+
 ```go
 // Adds ID to request context
 ctx := context.WithValue(r.Context(), middleware.RequestIDKey, "abc123")
 ```
 
 **Usage**:
+
 ```go
 func handler(w http.ResponseWriter, r *http.Request) {
     reqID := middleware.GetReqID(r.Context())
@@ -120,11 +123,13 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 **Purpose**: Extract **real client IP** from proxies/load balancers
 
-**Problem**: 
+**Problem**:
+
 - Direct connection: r.RemoteAddr = "203.0.113.5:54321" ✅
 - Behind proxy: r.RemoteAddr = "10.0.0.1:12345" ❌ (proxy IP, not client)
 
 **Solution**: Reads headers:
+
 - X-Forwarded-For: 203.0.113.5, 192.168.1.1
 - X-Real-IP: 203.0.113.5
 
@@ -139,6 +144,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 **Purpose**: Log every HTTP request/response
 
 **Logs**:
+
 - HTTP method (GET, POST, etc.)
 - Request path (/api/users)
 - Status code (200, 404, 500)
@@ -146,6 +152,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 - Request ID
 
 **Output example**:
+
 ```
 2025/12/04 10:30:45 "GET /api/users HTTP/1.1" 200 125ms
 2025/12/04 10:30:46 "POST /api/login HTTP/1.1" 401 23ms
@@ -160,6 +167,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 **Purpose**: Catch **panics** in handlers to prevent server crash
 
 **Without Recoverer**:
+
 ```go
 func handler(w http.ResponseWriter, r *http.Request) {
     panic("something broke")  // ❌ Server crashes
@@ -167,6 +175,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 ```
 
 **With Recoverer**:
+
 ```go
 func handler(w http.ResponseWriter, r *http.Request) {
     panic("something broke")  // ✅ Returns 500, logs error, server stays up
@@ -174,6 +183,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 ```
 
 **What it does**:
+
 1. Catches panic with defer recover()
 2. Logs stack trace
 3. Returns 500 Internal Server Error
@@ -183,22 +193,25 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 ---
 
-## middleware.Timeout(60 * time.Second)
+## middleware.Timeout(60 \* time.Second)
 
 **Purpose**: Cancel long-running requests automatically
 
 **How it works**:
+
 ```go
 ctx, cancel := context.WithTimeout(r.Context(), 60*time.Second)
 defer cancel()
 ```
 
 **After 60 seconds**:
+
 - ctx.Done() channel closes
 - Returns 503 Service Unavailable
 - Handler should check ctx.Done() and stop work
 
 **Example**:
+
 ```go
 func handler(w http.ResponseWriter, r *http.Request) {
     select {
@@ -227,6 +240,7 @@ r.Get("/", handler)  // 6th: Your handler runs last
 ```
 
 **Request flow**:
+
 ```
 Client Request
     ↓
@@ -254,6 +268,7 @@ Response to Client
 ## Key Concepts
 
 **Middleware = Wrapper Function**:
+
 ```go
 func Logger(next http.Handler) http.Handler {
     return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -265,6 +280,7 @@ func Logger(next http.Handler) http.Handler {
 ```
 
 **Context carries data down the chain**:
+
 ```go
 // RequestID adds to context
 ctx := context.WithValue(r.Context(), "reqID", "abc")
@@ -274,6 +290,36 @@ reqID := r.Context().Value("reqID")
 ```
 
 **Order matters**:
+
 - Logger should be early to measure full request time
 - Recoverer should wrap handlers to catch panics
 - Timeout should be after logging setup but before heavy work
+
+handler commit:
+
+Client Request
+↓
+[Chi Router] GET /products
+↓
+[ListProducts Handler]
+↓
+
+1. Create anonymous struct
+   products := struct{Products []string}{}
+   Memory: {Products: nil}
+   ↓
+2. Call json.Write(w, 200, products)
+   ↓
+3. Set Content-Type header
+   ↓
+4. Write status code 200
+   ↓
+5. Marshal struct to JSON
+   {Products: nil} → {"products":null}
+   ↓
+6. Write JSON to response writer
+   ↓
+   Client receives:
+   HTTP/1.1 200 OK
+   Content-Type: application/json
+   {"products":null}

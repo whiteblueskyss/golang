@@ -19,13 +19,17 @@ func NewHandler(s Service) *handler {
 func (h *handler) ListProducts(w http.ResponseWriter, r *http.Request) {
 	// call the service to get products
 
-	// respond with products in JSON
+	products, err := h.service.ListProducts(r.Context())
+	if err != nil {
+		http.Error(w, "Failed to fetch products", http.StatusInternalServerError)
+		return
+	}
 
-	//mock product
+	productsResponse := struct {
+		Products []string `json:"products"`
+	}{
+		Products: products,
+	}
 
-	products := struct {
-		Products []string `json:"products"` // json:"products" tag for proper JSON encoding
-	}{}
-
-	json.Write(w, http.StatusOK, products)
+	json.Write(w, http.StatusOK, productsResponse)
 }
