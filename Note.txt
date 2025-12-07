@@ -26,3 +26,14 @@ While it is a common and idiomatic practice in Go to return an error as the last
 
 
 Learn about different type of build in packages. 
+
+Yes, defer always executes when the function returns, regardless of whether the function completes successfully or fails (panics).
+
+# Learning Golang
+
+### command
+
+- go mod init 03booking-app
+- go run .
+- go run \*.go
+-
